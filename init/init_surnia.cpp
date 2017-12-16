@@ -25,17 +25,20 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 #include <stdlib.h>
 #include <stdio.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
+#include <android-base/logging.h>
+#include <android-base/properties.h>
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
-#include "util.h"
+
+using android::base::GetProperty;
+using android::init::property_set;
 
 void gsm_properties(bool msim);
 void cdma_properties();
@@ -59,13 +62,13 @@ void vendor_load_properties()
     std::string platform;
     std::string radio;
 
-    platform = property_get("ro.board.platform");
+    platform = GetProperty("ro.board.platform", "");
     if (platform != ANDROID_TARGET)
         return;
 
-    radio = property_get("ro.boot.radio");
-    carrier = property_get("ro.boot.carrier");
-    fsg = property_get("ro.boot.fsg-id");
+    radio = GetProperty("ro.boot.radio", "");
+    carrier = GetProperty("ro.boot.carrier", "");
+    fsg = GetProperty("ro.boot.fsg-id", "");
 
     if (radio == "0x2") {
         /* XT1529 */
@@ -160,8 +163,8 @@ void vendor_load_properties()
         property_override("ro.build.fingerprint", "motorola/surnia_retbr_ds/surnia_uds:5.0.2/LXI22.50-24.1/1:user/release-keys");
         property_set("ro.mot.build.customerid", "retbr");
     }
-    device = property_get("ro.product.device");
-    INFO("Found radio id: %s setting build properties for %s device\n", radio.c_str(), device.c_str());
+    device = GetProperty("ro.product.device", "");
+    // INFO("Found radio id: %s setting build properties for %s device\n", radio.c_str(), device.c_str());
 }
 
 void cdma_properties()
