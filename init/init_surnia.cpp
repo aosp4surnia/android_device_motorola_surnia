@@ -25,15 +25,14 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 
+#include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <stdlib.h>
 #include <stdio.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
-
-#include <android-base/logging.h>
-#include <android-base/properties.h>
 #include "vendor_init.h"
 #include "property_service.h"
 
