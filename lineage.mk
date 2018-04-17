@@ -16,6 +16,7 @@
 $(call inherit-product, device/motorola/surnia/full_surnia.mk)
 
 # Boot animation
+TARGET_BOOTANIMATION_HALF_RES := true
 TARGET_SCREEN_WIDTH := 540
 TARGET_SCREEN_HEIGHT := 960
 
