@@ -14,6 +14,7 @@
 # limitations under the License.
 
 $(call inherit-product, device/motorola/surnia/full_surnia.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
