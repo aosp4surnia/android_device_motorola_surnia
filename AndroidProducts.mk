@@ -16,3 +16,8 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_surnia.mk
+
+COMMON_LUNCH_CHOICES := \
+    aosp_surnia-user \
+    aosp_surnia-userdebug \
+    aosp_surnia-eng
